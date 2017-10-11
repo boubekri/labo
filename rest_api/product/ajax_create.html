@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+<head>
+	<script type='text/javascript' src='../shared/js/jquery-3.1.1.min.js'></script>
+</head>
+<body>
+	<button id="btn_create_product">Create Product</button>
+</body>
+</html>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("#btn_create_product").on("click", function(event) {
+			
+			var _formData = JSON.stringify({
+				name : "Un produit", 
+				price : 12,
+				description : "Une description d'un produit",
+				category_id : 1,
+				created : "2017-10-06 00:00:00"
+			});
+
+			// submit form data to api
+			$.ajax({
+			    url: "/labo/RestApi/product/create.php",
+			    type : "POST",
+			    contentType : "application/json",
+			    data : _formData,
+			    success : function(result) {
+			        //product was created, go back to products list
+			        //showProducts();
+					//document.location.href="https://www.codeofaninja.com/one-more-step";
+			    },
+			    error: function(xhr, resp, text) {
+			        // show error to console
+			        console.log(xhr, resp, text);
+			    }
+			});
+		
+		});
+	})
+</script>
