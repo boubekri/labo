@@ -6,10 +6,8 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
-// get database connection
+// include database and object files
 include_once '../config/database.php';
- 
-// instantiate product object
 include_once '../objects/product.php';
  
 $database = new Database();
@@ -28,8 +26,8 @@ $product->category_id = $data->category_id;
 $product->created = date('Y-m-d H:i:s');
 
 // create the product
-if ($product->create()) {
-	echo '{"message": "Product was created."}';
+if ($id = $product->create()) {
+	echo $id;
 }
  
 // if unable to create the product, tell the user

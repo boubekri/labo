@@ -15,23 +15,23 @@
 		$("#btn_create_product").on("click", function(event) {
 			
 			var _formData = JSON.stringify({
-				name : "Un produit", 
-				price : 12,
-				description : "Une description d'un produit",
-				category_id : 1,
-				created : "2017-10-06 00:00:00"
+				name: "Un produit", 
+				price: 12,
+				description: "Une description d'un produit",
+				category_id: 1,
+				created: "2017-10-06 00:00:00"
 			});
 
 			// submit form data to api
 			$.ajax({
-			    url: "/labo/RestApi/product/create.php",
-			    type : "POST",
-			    contentType : "application/json",
-			    data : _formData,
-			    success : function(result) {
+			    url: "/labo/rest_api/product/create.php",
+			    type: "POST",
+			    contentType: "application/json",
+			    data: _formData,
+			    success: function(result) {
 			        //product was created, go back to products list
 			        //showProducts();
-					//document.location.href="https://www.codeofaninja.com/one-more-step";
+					document.location.href="/labo/rest_api/product/read_one.php?id=" + result;
 			    },
 			    error: function(xhr, resp, text) {
 			        // show error to console
