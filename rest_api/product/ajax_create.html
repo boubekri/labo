@@ -6,6 +6,10 @@
 </head>
 <body>
 	<button id="btn_create_product">Create Product</button>
+	<hr>
+	<button id="btn_update_product">Update Product</button>
+	<hr>
+	<button id="btn_delete_product">Delete Product</button>
 </body>
 </html>
 
@@ -24,21 +28,72 @@
 
 			// submit form data to api
 			$.ajax({
-			    url: "/labo/rest_api/product/create.php",
-			    type: "POST",
-			    contentType: "application/json",
-			    data: _formData,
-			    success: function(result) {
-			        //product was created, go back to products list
-			        //showProducts();
+				url: "/labo/rest_api/product/create.php",
+				type: "POST",
+				contentType: "application/json",
+				data: _formData,
+				success: function(result) {
+					//product was created, go back to products list
+					//showProducts();
 					document.location.href="/labo/rest_api/product/read_one.php?id=" + result;
-			    },
-			    error: function(xhr, resp, text) {
-			        // show error to console
-			        console.log(xhr, resp, text);
-			    }
+				},
+				error: function(xhr, resp, text) {
+					// show error to console
+					console.log(xhr, resp, text);
+				}
+			});		
+		});
+
+		$("#btn_update_product").on("click", function(event) {
+			
+			var _formData = JSON.stringify({
+				id: 109,
+				name: "Un produit modifié", 
+				price: 70,
+				description: "Une description d'un modifié",
+				category_id: 2
 			});
-		
+
+			// submit form data to api
+			$.ajax({
+				url: "/labo/rest_api/product/update.php",
+				type: "POST",
+				contentType: "application/json",
+				data: _formData,
+				success: function(result) {
+					//product was created, go back to products list
+					//showProducts();
+					document.location.href="/labo/rest_api/product/read_one.php?id=" + result;
+				},
+				error: function(xhr, resp, text) {
+					// show error to console
+					console.log(xhr, resp, text);
+				}
+			});		
+		});
+
+		$("#btn_delete_product").on("click", function(event) {
+			
+			var _formData = JSON.stringify({
+				id: 109
+			});
+
+			// submit form data to api
+			$.ajax({
+				url: "/labo/rest_api/product/delete.php",
+				type: "POST",
+				contentType: "application/json",
+				data: _formData,
+				success: function(result) {
+					//product was created, go back to products list
+					//showProducts();
+					//document.location.href="/labo/rest_api/product/read_one.php?id=" + result;
+				},
+				error: function(xhr, resp, text) {
+					// show error to console
+					console.log(xhr, resp, text);
+				}
+			});		
 		});
 	})
 </script>
